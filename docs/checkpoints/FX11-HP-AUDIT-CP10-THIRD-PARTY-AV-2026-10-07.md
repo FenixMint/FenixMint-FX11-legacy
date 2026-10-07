@@ -43,3 +43,34 @@ Verify only:
 - whether Defender is explicitly in passive/disabled mode where readable.
 
 No APPLY changes.
+
+## Runtime verification
+
+Observed:
+
+- ESET Forwarder: Running / Automatic
+- ESET Service (`ekrn`): Running / Automatic
+- ESET Firewall Helper: Running / Automatic
+- ESET HTTP Server: Stopped / Manual
+- ESET kernel/service process: present
+- Defender registry:
+  - `PassiveMode = 0`
+  - `DisableAntiSpyware = 1`
+
+Interpretation:
+
+ESET is actively running and is the effective third-party security product on this system.
+
+The Microsoft Defender Antivirus engine being inactive is therefore expected in this configuration. The registry state shows Defender antivirus explicitly disabled rather than merely passively coexisting.
+
+FX11 must not "repair" Defender by force while ESET remains the chosen antivirus. That could create product conflicts or an unnecessary dual-AV configuration.
+
+Current classification:
+
+- ESET Security: KEEP / ACTIVE SECURITY DEPENDENCY
+- Windows Security Center: KEEP / PROTECTED
+- Windows Firewall: KEEP / PROTECTED
+- Microsoft Defender Antivirus engine: NOT_APPLICABLE as primary AV while ESET is installed and active
+- Defender remediation: DO NOT APPLY unless ESET is intentionally removed or its registration/runtime becomes unhealthy
+
+The stopped manual ESET HTTP Server is not treated as a fault from this signal alone.
