@@ -10,9 +10,10 @@ It contains one shared platform for:
 2. improving an existing Tiny11 installation;
 3. improving an existing stock Windows 11 installation;
 4. maintaining accepted policy through FX11 Agent / Guards;
-5. running FX11 applications such as Fenix System.
+5. running FX11 applications such as Fenix System;
+6. applying the FX11 visual/UX capability independently where desired.
 
-This repository intentionally keeps the Windows-native generation together so the Builder, Retrofit paths and Agent can share one knowledge base and one policy model.
+This repository intentionally keeps the Windows-native generation together so the Builder, Retrofit paths, Agent, Fenix System and Visual Pack can share one knowledge base and one policy model.
 
 The later, stronger Linux/offline image builder is a separate next-generation line.
 
@@ -26,8 +27,9 @@ The later, stronger Linux/offline image builder is a separate next-generation li
 6. [Agent and Fenix System](architecture/FX11-AGENT-AND-FENIX-SYSTEM.md)
 7. [Inspiration sources](research/FX11-INSPIRATION-SOURCES.md)
 8. [Knowledge preservation checkpoint](checkpoints/FX11-KNOWLEDGE-CP1-2026-10-07.md)
-9. [Roadmap](roadmap/FX11-LEGACY-ROADMAP.md)
-10. [LibreHardwareMonitor licensing/integration](legal/LIBREHARDWAREMONITOR.md)
+9. [Design history timeline](history/FX11-DESIGN-TIMELINE.md)
+10. [Roadmap](roadmap/FX11-LEGACY-ROADMAP.md)
+11. [LibreHardwareMonitor licensing/integration](legal/LIBREHARDWAREMONITOR.md)
 
 ## Core doctrine
 
@@ -94,5 +96,7 @@ The architecture explicitly includes motherboard-level detection for custom syst
 ## Historical reference
 
 The detailed checkpoint preserves earlier ThinkPad/Tiny11 work, privacy/security decisions, Office trimming, Lenovo power policy, State/Privacy Guard, Fenix System, visual concepts, EFI lessons and open items.
+
+The design timeline preserves the chronology of major decisions.
 
 Do not delete historical decisions merely because implementation later changes. Mark them SUPERSEDED when needed.
