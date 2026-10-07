@@ -133,6 +133,31 @@ Goal: reduce diagnostics, telemetry, profiling, advertising/consumer experiences
 
 Privacy guards must be idempotent and auditable.
 
+## Data minimization / no private traces
+
+This repository and all shareable FX11 artifacts must contain **no real private or uniquely identifying deployment data**.
+
+Do not commit or publish real:
+
+- hardware or storage serial identifiers;
+- usernames, account addresses, tenant identifiers or user security identifiers;
+- computer or host names;
+- network identity such as adapter addresses, IP addresses or Wi-Fi names;
+- authentication or recovery secrets;
+- exact user-profile or document paths;
+- raw event-log payloads containing identity-bearing data;
+- unique device identifiers that are not required for a public technical artifact.
+
+Hardware-aware decisions use model, class and capability facts, not unique device identity.
+
+Audit/checkpoint schemas must exclude sensitive fields by design and apply a final privacy/redaction preflight before export.
+
+Tests and documentation use synthetic identities only.
+
+Full policy:
+
+`docs/security/FX11-DATA-MINIMIZATION-AND-REDACTION.md`
+
 ## Security
 
 Optimization never takes priority over security.
