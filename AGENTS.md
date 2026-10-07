@@ -31,6 +31,29 @@ Earlier operational shorthand remains valid inside this model:
 AUDIT -> APPLY -> VERIFY -> POLICY
 ```
 
+## User autonomy
+
+**FX11 exists to make the user's computer more useful, understandable and under their control.**
+
+The project must increase user freedom, not replace one layer of vendor control with another.
+
+Therefore:
+
+- explain material changes before applying them;
+- prefer reversible changes;
+- keep rollback paths where technically possible;
+- let users choose optional capabilities independently;
+- do not force cloud accounts, telemetry, visual themes, application bundles or vendor ecosystems;
+- do not silently install optional software;
+- do not silently remove software whose role is unknown;
+- keep local operation possible wherever practical;
+- avoid unnecessary background agents and permanent services;
+- make guards/policies visible and auditable;
+- allow the user to disable or remove FX11 components without breaking Windows;
+- never use privacy or security as an excuse to seize control from the user.
+
+FX11 should be an aid, not a lock-in mechanism.
+
 ## Quality rule
 
 **FX11 Quality > FX11 Uniformity**
