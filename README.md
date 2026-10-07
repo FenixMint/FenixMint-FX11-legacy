@@ -2,6 +2,14 @@
 
 Windows/PowerShell generation of FX11, retrofit tooling for existing Tiny11 and Windows 11 installations, and the FX11 runtime agent/application stack.
 
+## User ownership
+
+**The computer and the operating system belong to the user.**
+
+FX11 exists to return practical control over Windows to its owner — not to replace Microsoft/OEM lock-in with FX11 lock-in.
+
+See [FX11 User Ownership Principle](docs/philosophy/FX11-USER-OWNERSHIP.md).
+
 ## Project doctrine
 
 `DISCOVER -> AUDIT -> CLASSIFY -> PLAN -> APPROVE -> APPLY -> VERIFY -> GUARD`
