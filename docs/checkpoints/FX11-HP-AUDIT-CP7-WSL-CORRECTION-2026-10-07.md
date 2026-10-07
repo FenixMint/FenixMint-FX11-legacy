@@ -82,3 +82,42 @@ wsl --status; wsl --version; wsl --list --verbose
 ```
 
 This is read-only and should be the canonical WSL discovery path for this machine.
+
+## Runtime verification
+
+Observed with the WSL runtime itself:
+
+- default WSL generation: 2;
+- WSL runtime version: 2.7.12.0;
+- Linux kernel version: 6.18.33.2-2;
+- Windows build reported by WSL: 10.0.26200.9550;
+- WSL1 support is not enabled in the current Windows configuration;
+- two WSL distributions are registered;
+- one WSL2 distribution is running;
+- one WSL2 distribution is stopped.
+
+The active distribution is Fedora Linux; the stopped distribution is AlmaLinux.
+
+No guest filesystem contents, usernames, paths or account data were collected.
+
+## Corrected dependency conclusion
+
+- `VirtualMachinePlatform`: **KEEP / REQUIRED** while WSL2 remains in use.
+- Store-delivered WSL runtime: **KEEP / REQUIRED** while WSL2 remains in use.
+- legacy/inbox `Microsoft-Windows-Subsystem-Linux` optional feature: currently disabled and not required for this observed WSL2 setup; it would be required for WSL1 support.
+- full `Microsoft-Hyper-V-All` role: **OPTIONAL-CANDIDATE / REVIEW**. No Hyper-V VMs are registered, Windows Sandbox/Containers/HypervisorPlatform are disabled, and WSL2 does not require the full Hyper-V management role when Virtual Machine Platform remains available.
+- VBS: still running and must be rechecked after any Hyper-V-role change.
+
+## FX11 detection rule added
+
+Do not equate the legacy `Microsoft-Windows-Subsystem-Linux` Optional Feature with "WSL present".
+
+Canonical WSL detection must use the WSL runtime:
+
+```
+wsl --status
+wsl --version
+wsl --list --verbose
+```
+
+Optional Feature state is supplemental evidence only.
