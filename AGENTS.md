@@ -15,6 +15,24 @@ Read and follow in this order:
 
 Do not reconstruct architecture from memory when the repository already contains a newer decision.
 
+
+## Mandatory session reporting
+
+Every work conversation for this repository must follow:
+
+`docs/development/SESSION-REPORTING-PROTOCOL-2026-10-08.md`
+
+The OWNER signals the phase explicitly:
+
+- `RAPORT START` -> create, commit, push and verify the durable opening report
+  before substantive work.
+- `RAPORT STOP` -> complete the session report, update the daily report,
+  commit, push and verify before handoff/closure.
+
+No conversation may silently omit an OWNER-requested START or STOP report.
+Reports are durable GitHub handoff state and must obey the repository data
+minimization/privacy rules.
+
 ## Core doctrine
 
 FX11 is not a blanket debloat script.
