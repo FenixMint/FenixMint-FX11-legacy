@@ -51,3 +51,56 @@ just because they appear at logon.
 Inspect the exact startup registration sources for the duplicate OneDriveSetup entries and Microsoft.Lists without collecting usernames or SIDs.
 
 No APPLY action.
+
+## Registration-source verification
+
+Observed registry startup sources:
+
+### HKLM Run
+
+Present among the audited entries:
+
+- SecurityHealth
+- RtkAudUService
+- egui / ESET
+
+Not present there:
+
+- OneDriveSetup
+- OneDrive
+- Microsoft.Lists
+- AnyDesk
+
+### HKCU Run
+
+Present:
+
+- OneDrive
+- Microsoft.Lists
+
+Not present there:
+
+- OneDriveSetup
+- AnyDesk
+- SecurityHealth
+- RtkAudUService
+- egui
+
+### RunOnce
+
+No matching OneDriveSetup or Microsoft.Lists entries were returned.
+
+## Interpretation
+
+- OneDrive and Microsoft.Lists are ordinary current-user Run registrations.
+- SecurityHealth, Realtek audio support and ESET are machine-wide Run registrations.
+- the duplicate OneDriveSetup entries reported by Win32_StartupCommand do **not** originate from the currently queried HKLM/HKCU Run or RunOnce keys.
+- AnyDesk startup also does not originate from those currently queried Run keys.
+
+Therefore the remaining source must be discovered rather than guessed. Possible sources include another startup-registration location, service registration, startup folders, scheduled mechanisms, or entries belonging to another local profile.
+
+FX11 must not delete duplicate-looking startup entries until their registration source is known.
+
+## Next read-only step
+
+Query Win32_StartupCommand only for the ambiguous entries and sanitize any SID-like location tokens before displaying/persisting them.
