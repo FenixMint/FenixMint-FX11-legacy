@@ -104,3 +104,33 @@ FX11 must not delete duplicate-looking startup entries until their registration 
 ## Next read-only step
 
 Query Win32_StartupCommand only for the ambiguous entries and sanitize any SID-like location tokens before displaying/persisting them.
+
+## Ambiguous startup source resolved
+
+Observed:
+
+- OneDriveSetup entry #1: `HKU\S-1-5-19\...\Run`
+- OneDriveSetup entry #2: `HKU\S-1-5-20\...\Run`
+- Microsoft.Lists: current-user Run entry
+- AnyDesk: Common Startup
+
+Interpretation:
+
+- `S-1-5-19` is the built-in **LOCAL SERVICE** account.
+- `S-1-5-20` is the built-in **NETWORK SERVICE** account.
+- therefore the two OneDriveSetup records are not duplicate entries for the interactive user; they belong to two Windows service profiles.
+- Microsoft.Lists is a normal per-user startup registration.
+- AnyDesk is intentionally launched from the machine-wide Common Startup folder.
+
+## Corrected startup classification
+
+- OneDriveSetup pair: NOT A USER DUPLICATE / no cleanup action
+- Microsoft.Lists: KEEP / Microsoft 365 sync stack unless user chooses otherwise
+- AnyDesk: KEEP while unattended remote access is desired
+- SecurityHealth / Realtek / ESET: KEEP as previously classified
+
+## Architecture lesson
+
+FX11 must resolve startup ownership before labelling entries as duplicates.
+
+Two identical commands can legitimately belong to different security principals or startup scopes. Duplicate-looking output from `Win32_StartupCommand` is insufficient evidence for cleanup.
